@@ -163,6 +163,12 @@ class MetadataFactory implements AdvancedMetadataFactoryInterface
      */
     private function getClassHierarchy($class)
     {
+        if (gettype($class) == 'string') {
+            throw new \RuntimeException(
+                'Oops! Expected object, string found'
+            );
+        }
+
         $classes = array();
         $refl = new \ReflectionClass($class);
 
